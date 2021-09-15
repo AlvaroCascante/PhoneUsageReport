@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MainReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7b13fd5e-5e1f-4bd2-a95d-4878adcc4f15">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CellPhoneAdapter"/>
+	<property name="net.sf.jasperreports.data.adapter" value="reports/CellPhoneAdapter.xml"/>
+	<parameter name="subReportParameter" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<queryString language="csv">
+		<![CDATA[]]>
+	</queryString>
+	<field name="employeeId" class="java.lang.String"/>
+	<field name="employeeName" class="java.lang.String"/>
+	<field name="purchaseDate" class="java.lang.String"/>
+	<field name="model" class="java.lang.String"/>
+	<variable name="varPhonesCount" class="java.lang.Long" calculation="Count">
+		<variableExpression><![CDATA[$F{employeeId}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="varSumMinutes" class="java.lang.Long"/>
+	<variable name="varSumData" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+
+	<title>
+		<band height="140" splitType="Stretch">
+			<!-- Tittle -->
+			<staticText>
+				<reportElement x="80" y="0" width="400" height="30" uuid="650bdaac-4fa5-4c82-bf01-bdac75da11a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA["Cell Phone Usage Report"]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="40" y="40" width="480" height="90" uuid="a81cc8f9-5534-41b0-b205-104ae23dd705"/>
+			</rectangle>
+
+			<!-- Date -->
+			<staticText>
+				<reportElement x="50" y="50" width="89" height="30" uuid="925352c2-dbea-41cf-83ce-6619ba38466e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="50" width="120" height="30" uuid="d4f967d5-716b-4208-bf7d-3b26fd15279f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+
+			<!-- Total Minutes -->
+			<staticText>
+				<reportElement x="280" y="50" width="50" height="30" uuid="dd6df536-a1d0-4838-9e7c-8a952771c1ac"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Minutes]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="340" y="50" width="40" height="30" uuid="921a4c59-7d7f-4b97-8894-55bdb8ff019e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{varSumMinutes}]]></textFieldExpression>
+			</textField>
+
+			<!-- Average Minutes -->
+			<staticText>
+				<reportElement x="400" y="50" width="60" height="30" uuid="5a0f0a9d-20aa-4aac-a4f9-c72431bc7753"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Average]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="#,##0.00#;(#,##0.00#-)">
+				<reportElement x="470" y="50" width="50" height="30" uuid="caf814bf-27e2-4a6d-bb6c-e39c68ae5c1f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{varSumMinutes}/$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+
+			<!-- Total Phones -->
+			<textField evaluationTime="Report">
+				<reportElement x="140" y="90" width="120" height="30" uuid="2f81e8ea-955e-40ee-ac14-464da4bd46d3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="90" width="89" height="30" uuid="5f0fc5de-9a77-4658-bf7b-2207a725546e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Phones:]]></text>
+			</staticText>
+
+			<!-- Total Data -->
+			<staticText>
+				<reportElement x="280" y="90" width="50" height="30" uuid="1b904267-58df-4bd7-9c59-29d870373b4c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="340" y="90" width="40" height="30" uuid="8f31c549-789c-4983-9af2-7e27ad56c981"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{varSumData}]]></textFieldExpression>
+			</textField>
+
+			<!-- Average Data -->
+			<staticText>
+				<reportElement x="400" y="90" width="60" height="30" uuid="1ab78bfd-9e99-42e5-955f-2a5234336da6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Average]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="#,##0.00#;(#,##0.00#-)">
+				<reportElement x="470" y="90" width="50" height="30" uuid="93596548-e5c3-475f-9b55-92671e2b5e3b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{varSumData}/$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+
+	<detail>
+		<band height="180" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+
+			<staticText>
+				<reportElement x="0" y="10" width="80" height="30" uuid="38c6b1be-b2fd-41cf-8efb-a8c8a34df37e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9472b784-bc71-49ba-b1c1-6944675f0035"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Employee:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="10" width="100" height="30" uuid="7f44e089-36b8-4127-82ee-fc96c48d8199">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9472b784-bc71-49ba-b1c1-6944675f0035"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{employeeId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="10" width="290" height="30" uuid="7186c944-5d29-41bd-a1d5-bf8a781eb109">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="afe8e631-7cfe-40d8-afe6-493e0477a161"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{employeeName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="50" width="80" height="30" uuid="303b0422-7f6d-4164-ba2c-e76006817b6c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9472b784-bc71-49ba-b1c1-6944675f0035"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Purchase Date:]]></text>
+			</staticText>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="80" y="50" width="100" height="30" uuid="dfae371c-0198-43d6-8ae6-256ddf83a216">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5da57f0a-7a84-42fe-90cc-1b02ee85a823"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[(($F{purchaseDate} != null && $F{purchaseDate}.length() == 8) ? $F{purchaseDate}.substring(6,8)+ "/" +$F{purchaseDate}.substring(4,6) + "/" + $F{purchaseDate}.substring(0,4) : "")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="50" width="290" height="30" uuid="6ad06a90-0cdd-4937-b8e9-a2f89a40220c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fa5fece-a1b6-480a-b87b-64f1f3530f4c"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{model}]]></textFieldExpression>
+			</textField>
+			<subreport isUsingCache="true" runToBottom="true">
+				<reportElement x="20" y="80" width="360" height="100" uuid="7e0af9da-3611-4a40-a4e4-24cede0511bd">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<subreportParameter name="paramEmployeeId">
+					<subreportParameterExpression><![CDATA[$F{employeeId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<returnValue subreportVariable="varSumData" toVariable="varSumData"/>
+				<returnValue subreportVariable="varSumMinutes" toVariable="varSumMinutes"/>
+				<subreportExpression class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$P{subReportParameter}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="139" height="30" uuid="abae032d-4efa-4785-86f2-b2a0d5b64216"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="140" y="0" width="140" height="30" uuid="e87a0eb1-797e-47e7-93c4-790d737d5082"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

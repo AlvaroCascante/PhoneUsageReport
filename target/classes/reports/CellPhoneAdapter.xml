@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<csvDataAdapter class="net.sf.jasperreports.data.csv.CsvDataAdapterImpl">
+    <name>CellPhoneAdapter</name>
+    <dataFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="repositoryDataLocation">
+        <location>reports/CellPhone.csv</location>
+    </dataFile>
+    <recordDelimiter></recordDelimiter>
+    <fieldDelimiter>,</fieldDelimiter>
+    <useFirstRowAsHeader>true</useFirstRowAsHeader>
+    <locale xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://java.sun.com" xsi:type="java:java.lang.String">en_CR</locale>
+    <timeZone xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://java.sun.com" xsi:type="java:java.lang.String">America/Costa_Rica</timeZone>
+    <queryExecuterMode>true</queryExecuterMode>
+    <columnNames>employeeId</columnNames>
+    <columnNames>employeeName</columnNames>
+    <columnNames>purchaseDate</columnNames>
+    <columnNames>model</columnNames>
+</csvDataAdapter>
