@@ -35,6 +35,7 @@ public class Phone {
     }
 
     public void setPurchaseDate(LocalDate purchaseDateParam) {
+        model.indexOf('/');
         this.purchaseDate = purchaseDateParam;
         this.purchaseDay = purchaseDate.getDayOfMonth();
         this.purchaseMonth = purchaseDate.getMonthValue();
