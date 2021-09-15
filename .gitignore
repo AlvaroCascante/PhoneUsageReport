@@ -21,3 +21,12 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#Workspace files
+.idea/*
+HELP.md
+mvnw
+mvnw.cmd
+phone-usage.iml
+src/.DS_store
+src/main/.DS_store
